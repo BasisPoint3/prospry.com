@@ -1,0 +1,345 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { caseStudies } from '../data/case-studies';
+
+const services = [
+	{
+		n: '01',
+		title: 'AI Discovery Call',
+		tag: 'Most people start here',
+		desc: 'A clear, plain-English breakdown of where AI can actually help your business — and what\'s worth doing first.',
+	},
+	{
+		n: '02',
+		title: 'AI Coaching',
+		desc: 'Ongoing, hands-on guidance as you and your team build real AI habits — not a course you start once and never finish.',
+	},
+	{
+		n: '03',
+		title: 'AI Agent Build',
+		desc: 'We roll up our sleeves and build custom automation around your actual workflow, so the busywork happens quietly in the background.',
+	},
+	{
+		n: '04',
+		title: 'Fractional AI Officer',
+		desc: 'A dedicated AI lead working inside your business on a set schedule — always building, always prioritizing what helps you most next.',
+	},
+];
+
+const reasons = [
+	{
+		title: 'We watch what we build',
+		desc: 'After launch, we monitor how it\'s performing and fix what breaks before you notice — not after a support ticket.',
+	},
+	{
+		title: 'We adjust as you grow',
+		desc: 'Your business won\'t stay the same, so the system shouldn\'t either. We come back and tune it as things change.',
+	},
+	{
+		title: 'You call a person, not a ticket queue',
+		desc: 'No outsourced support line. You reach the person who actually built it.',
+	},
+];
+---
+
+<Layout
+	title="Prospry — AI agents for growing businesses"
+	description="Prospry builds custom AI agents for small and medium-sized businesses — automating support, sales, and operations without enterprise cost or complexity."
+>
+	<main id="top">
+		<section class="hero">
+			<div class="wrap hero-inner">
+				<p class="eyebrow">A clear starting point for AI</p>
+				<h1>You don't need to figure out AI alone.</h1>
+				<p class="lede">
+					You keep hearing AI can save you time and money. What nobody's
+					told you is what that actually looks like in your business, or
+					who to trust to help you find out. We'll tell you plainly what's
+					worth doing, what isn't, and help you do it.
+				</p>
+				<div class="hero-actions">
+					<a class="btn btn-primary" href="mailto:hello@prospry.com">Book a call</a>
+					<a class="btn btn-ghost" href="#services">See what we offer</a>
+				</div>
+			</div>
+		</section>
+
+		<section id="services" class="services">
+			<div class="wrap">
+				<h2>One partner, at whatever level you need</h2>
+				<p class="section-lede">
+					Start with a single conversation. Go as deep as makes sense for
+					your business — from matching you to the right tools, to a
+					dedicated AI lead inside your team. Same partner the whole way.
+				</p>
+				<div class="card-grid">
+					{services.map((s) => (
+						<div class="card">
+							<span class="step-n">{s.n}</span>
+							{s.tag && <span class="card-tag">{s.tag}</span>}
+							<h3>{s.title}</h3>
+							<p>{s.desc}</p>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<section id="proof" class="proof">
+			<div class="wrap">
+				<h2>Real work, real numbers</h2>
+				<p class="section-lede">See what an AI agent actually does for a business like yours.</p>
+				<div class="proof-grid">
+					{caseStudies.map((s) => (
+						<a class="proof-card" href={`/our-work/${s.slug}`}>
+							<span class="industry-tag">{s.industry}</span>
+							<span class="card-tag">{s.tag}</span>
+							<h3>{s.title}</h3>
+							<p class="metric">{s.metric}</p>
+							<p>{s.summary}</p>
+							{s.quote && (
+								<blockquote>
+									<p>{s.quote}</p>
+									<cite>{s.attribution}</cite>
+								</blockquote>
+							)}
+							<span class="read-more">Read the full case study →</span>
+						</a>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<section id="why" class="why">
+			<div class="wrap">
+				<h2>We don't deliver and disappear</h2>
+				<p class="section-lede">
+					Most automation agencies hand over the files and move on. We
+					think that's the wrong model — systems need attention as your
+					business changes, and the value is in what a build does for you
+					over time. That's why we stay.
+				</p>
+				<div class="reason-grid">
+					{reasons.map((r) => (
+						<div class="reason">
+							<h3>{r.title}</h3>
+							<p>{r.desc}</p>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+	</main>
+</Layout>
+
+<style>
+	/* Hero */
+	.hero {
+		padding: 96px 0 88px;
+		background: radial-gradient(circle at 20% 0%, rgba(0, 0, 0, 0.035), transparent 55%);
+	}
+
+	.hero-inner {
+		max-width: 780px;
+	}
+
+	.hero h1 {
+		font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+		line-height: 1.12;
+		margin-bottom: 22px;
+	}
+
+	.lede {
+		font-size: 1.1rem;
+		color: var(--text-muted);
+		max-width: 620px;
+		margin-bottom: 34px;
+	}
+
+	.hero-actions {
+		display: flex;
+		gap: 14px;
+		flex-wrap: wrap;
+	}
+
+	/* Section shared */
+	section h2 {
+		font-size: 1.9rem;
+	}
+
+	.section-lede {
+		color: var(--text-muted);
+		margin-top: 10px;
+		font-size: 1.02rem;
+	}
+
+	.services, .why {
+		padding: 88px 0;
+	}
+
+	/* Services cards */
+	.card-grid {
+		margin-top: 40px;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 20px;
+	}
+
+	.card {
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		padding: 26px 28px;
+	}
+
+	.card .step-n {
+		display: block;
+		margin-bottom: 8px;
+	}
+
+	.card-tag {
+		display: inline-block;
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: var(--accent-strong);
+		margin-bottom: 10px;
+	}
+
+	.card h3 {
+		font-size: 1.15rem;
+		margin-bottom: 10px;
+	}
+
+	.card p {
+		color: var(--text-muted);
+		font-size: 0.96rem;
+	}
+
+	.step-n {
+		font-size: 0.85rem;
+		font-weight: 700;
+		color: var(--accent-strong);
+		letter-spacing: 0.04em;
+	}
+
+	/* Proof */
+	.proof {
+		padding: 88px 0;
+		background: var(--bg-alt);
+		border-top: 1px solid var(--border);
+		border-bottom: 1px solid var(--border);
+	}
+
+	.proof-grid {
+		margin-top: 40px;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 20px;
+	}
+
+	.proof-card {
+		position: relative;
+		display: block;
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		padding: 28px 30px;
+		transition: border-color 0.15s ease;
+	}
+
+	.proof-card:hover {
+		border-color: var(--accent-strong);
+	}
+
+	.read-more {
+		display: inline-block;
+		margin-top: 18px;
+		font-size: 0.88rem;
+		font-weight: 600;
+		color: var(--accent-strong);
+	}
+
+	.industry-tag {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		font-size: 0.72rem;
+		font-weight: 600;
+		color: var(--text-muted);
+		border: 1px solid var(--border);
+		border-radius: 999px;
+		padding: 4px 12px;
+	}
+
+	.proof-card h3 {
+		font-size: 1.15rem;
+		margin-bottom: 6px;
+	}
+
+	.metric {
+		font-weight: 700;
+		color: var(--accent-strong);
+		font-size: 1.02rem;
+		margin-bottom: 14px;
+	}
+
+	.proof-card > p:not(.metric) {
+		color: var(--text-muted);
+		font-size: 0.96rem;
+	}
+
+	.proof-card blockquote {
+		margin: 18px 0 0;
+		padding: 14px 18px;
+		border-left: 3px solid var(--accent-strong);
+		background: var(--bg-alt);
+	}
+
+	.proof-card blockquote p {
+		color: var(--text);
+		font-size: 0.96rem;
+		font-style: italic;
+		margin-bottom: 6px;
+	}
+
+	.proof-card cite {
+		font-size: 0.86rem;
+		font-style: normal;
+		color: var(--text-muted);
+	}
+
+	/* Why us */
+	.reason-grid {
+		margin-top: 40px;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 24px;
+	}
+
+	.reason h3 {
+		font-size: 1.08rem;
+		margin-bottom: 10px;
+	}
+
+	.reason p {
+		color: var(--text-muted);
+		font-size: 0.94rem;
+	}
+
+	@media (max-width: 860px) {
+		.card-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.proof-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.reason-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

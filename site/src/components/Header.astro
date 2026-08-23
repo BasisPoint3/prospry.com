@@ -1,0 +1,51 @@
+---
+const nav = [
+	{ href: '/#services', label: 'Services' },
+	{ href: '/our-work', label: 'Our work' },
+	{ href: '/about', label: 'About' },
+];
+---
+
+<header class="site-header">
+	<div class="wrap header-inner">
+		<a class="logo" href="/">Prospry</a>
+		<nav class="nav">
+			{nav.map((item) => <a href={item.href}>{item.label}</a>)}
+		</nav>
+		<div class="header-actions">
+			<a class="btn btn-primary btn-small" href="mailto:hello@prospry.com">Book a call</a>
+			<button
+				class="menu-toggle"
+				id="menu-toggle"
+				type="button"
+				aria-expanded="false"
+				aria-controls="mobile-nav"
+				aria-label="Toggle menu"
+			>
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+		</div>
+	</div>
+	<nav class="mobile-nav" id="mobile-nav">
+		{nav.map((item) => <a href={item.href}>{item.label}</a>)}
+	</nav>
+</header>
+
+<script>
+	const toggle = document.getElementById('menu-toggle');
+	const mobileNav = document.getElementById('mobile-nav');
+
+	toggle?.addEventListener('click', () => {
+		const isOpen = document.body.classList.toggle('mobile-nav-open');
+		toggle.setAttribute('aria-expanded', String(isOpen));
+	});
+
+	mobileNav?.querySelectorAll('a').forEach((link) => {
+		link.addEventListener('click', () => {
+			document.body.classList.remove('mobile-nav-open');
+			toggle?.setAttribute('aria-expanded', 'false');
+		});
+	});
+</script>
