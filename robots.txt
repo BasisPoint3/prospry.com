@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://prospry.com/sitemap-index.xml

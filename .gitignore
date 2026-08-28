@@ -1,0 +1,4 @@
+# The Astro source project. This repo tracks only the built static output,
+# which GitHub Pages serves from the repo root. See ../CLAUDE.md for the
+# deploy process: build in site/, then copy site/dist/. into the root.
+site/
